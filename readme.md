@@ -2,7 +2,7 @@ Repo Folder Structure
 - [Attribution](#Attribution)
 - [Repo Folder Structure](#repo-folder-structure)
 - [Main Terraform Config](#main-terraform-config)
-- [Variavble files](#variable-files)
+- [Variable files](#variable-files)
 - [Policy Initiative (Policy Set Definitions) Module](#policy-initiative-policy-set-definitions-module)
 - [Policy Initiative (Policy Set Definitions) Assignment Module](#policy-initiative-policy-set-definitions-assignment-module)
 - [Policy Definitions Module](#policy-definitions-module)
