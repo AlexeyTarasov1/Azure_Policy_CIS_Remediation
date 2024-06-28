@@ -1,0 +1,74 @@
+trigger: none
+
+pr: none
+
+pool:
+  vmImage: ubuntu-latest
+
+parameters:
+- name: Subscription
+  type: string
+  default: SubscriptionName
+- name: TerraFormVer
+  default: '1.7.5'
+- name: ManagementGroup
+  type: string
+  default: Mangroup1
+  values:
+  - Mangroup1
+  - Mangroup2
+
+variables:
+- template: /pipelines/terraform.var.yaml
+- name: ManagementGroup
+  value: ${{ parameters.ManagementGroup }}
+
+stages:
+- stage: deploy_policyset_to_${{ parameters.Subscription }}_stage
+  jobs:
+  - job: deploy_policyset_${{ parameters.Subscription }}_job
+    steps:
+    - task: qetza.replacetokens.replacetokens-task.replacetokens@6
+      displayName: 'Replace tokens'
+      inputs:
+        missingVarLog: 'error'
+        tokenPattern: custom
+        tokenPrefix: '#{'
+        tokenSuffix: '}'
+        sources: |
+          var.${{ parameters.Subscription }}.tfvars
+    - task: TerraformInstaller@1
+      displayName: Install Terraform ${{ parameters.TerraFormVer }}
+      inputs:
+        terraformVersion: ${{ parameters.TerraFormVer }}
+    - task: TerraformTaskV4@4
+      displayName: Initialize Terraform
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        backendServiceArm: ${{ parameters.Subscription }}
+        backendAzureRmResourceGroupName: ${{ variables.BackRGName }}
+        backendAzureRmStorageAccountName: ${{ variables.BackStorageAccName }}
+        backendAzureRmContainerName: 'terraform'
+        backendAzureRmKey: '${{ parameters.Subscription }}.state.tfstate'
+    - task: TerraformTaskV4@4
+      displayName: Validate Terraform
+      inputs:
+        provider: 'azurerm'
+        command: 'validate'
+        environmentServiceNameAzureRM: ${{ parameters.Subscription }}
+    - task: TerraformTaskV4@4
+      name: terraformPlan
+      displayName: Create Terraform Plan
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        environmentServiceNameAzureRM: ${{ parameters.Subscription }}
+        commandOptions: '-out main.tfplan -var-file="var.${{ parameters.Subscription }}.tfvars"'
+    - task: TerraformTaskV4@4
+      displayName: Apply Terraform Plan
+      inputs:
+        provider: 'azurerm'
+        command: 'apply'
+        commandOptions: 'main.tfplan'
+        environmentServiceNameAzureRM: ${{ parameters.Subscription }}
