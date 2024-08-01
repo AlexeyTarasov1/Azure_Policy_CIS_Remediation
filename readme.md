@@ -62,7 +62,7 @@ For example: Identity name, security contacts, tags
 **Note:** Will be updated later
 
 ## Policy Initiative (Policy Set Definitions) Module
-All custom policies linked to the Policy Set 'CIS_Remediation'
+All custom policies linked to the Policy Set 'Azure Policy remediation'
 
 ## Policy Initiative (Policy Set Definitions) Assignment Module
 We assign policy set to the target subscription
