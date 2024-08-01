@@ -84,10 +84,6 @@ module "policy_remediations" {
     #   policyName = module.policy_definitions.azure_defender_for_storage_name
     # },
     {
-      policyID = module.policy_definitions.azure_storage_https_id
-      policyName = module.policy_definitions.azure_storage_https_name
-    },
-    {
       policyID = module.policy_definitions.azure_appservice_latest_http_id
       policyName = module.policy_definitions.azure_appservice_latest_http_name
     },
@@ -98,6 +94,14 @@ module "policy_remediations" {
     {
       policyID = module.policy_definitions.azure_appservice_ftp_disable_id
       policyName = module.policy_definitions.azure_appservice_ftp_disable_name
+    },
+    {
+      policyID = module.policy_definitions.azure_storage_https_id
+      policyName = module.policy_definitions.azure_storage_https_name
+    },
+    {
+      policyID = module.policy_definitions.azure_storage_min_tls_id
+      policyName = module.policy_definitions.azure_storage_min_tls_name
     }
   ]
 }
@@ -156,9 +160,6 @@ module "policyset_definitions" {
     #   policyID = module.policy_definitions.azure_defender_for_storage_id
     # },
     {
-      policyID = module.policy_definitions.azure_storage_https_id
-    },
-    {
       policyID = module.policy_definitions.azure_appservice_latest_http_id
     },
     {
@@ -166,6 +167,12 @@ module "policyset_definitions" {
     },
     {
       policyID = module.policy_definitions.azure_appservice_ftp_disable_id
+    },
+    {
+      policyID = module.policy_definitions.azure_storage_https_id
+    },
+    {
+      policyID = module.policy_definitions.azure_storage_min_tls_id
     }
   ]
 }
