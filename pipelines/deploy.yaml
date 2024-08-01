@@ -50,7 +50,7 @@ stages:
         backendAzureRmResourceGroupName: ${{ variables.BackRGName }}
         backendAzureRmStorageAccountName: ${{ variables.BackStorageAccName }}
         backendAzureRmContainerName: 'terraform'
-        backendAzureRmKey: '${{ parameters.Subscription }}.state.tfstate'
+        backendAzureRmKey: '${{ parameters.ManagementGroup }}.state.tfstate'
     - task: TerraformTaskV4@4
       displayName: Validate Terraform
       inputs:
