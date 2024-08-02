@@ -88,12 +88,32 @@ module "policy_remediations" {
       policyName = module.policy_definitions.azure_appservice_latest_http_name
     },
     {
+      policyID = module.policy_definitions.azure_function_latest_http_id
+      policyName = module.policy_definitions.azure_function_latest_http_name
+    },
+    {
       policyID = module.policy_definitions.azure_appservice_https_redirect_id
       policyName = module.policy_definitions.azure_appservice_https_redirect_name
     },
     {
+      policyID = module.policy_definitions.azure_function_https_redirect_id
+      policyName = module.policy_definitions.azure_function_https_redirect_name
+    },
+    {
       policyID = module.policy_definitions.azure_appservice_ftp_disable_id
       policyName = module.policy_definitions.azure_appservice_ftp_disable_name
+    },
+    {
+      policyID = module.policy_definitions.azure_function_ftp_disable_id
+      policyName = module.policy_definitions.azure_function_ftp_disable_name
+    },
+    {
+      policyID = module.policy_definitions.azure_appservice_tls_latest_id
+      policyName = module.policy_definitions.azure_appservice_tls_latest_name
+    },
+    {
+      policyID = module.policy_definitions.azure_function_tls_latest_id
+      policyName = module.policy_definitions.azure_function_tls_latest_name
     },
     {
       policyID = module.policy_definitions.azure_storage_https_id
@@ -163,10 +183,25 @@ module "policyset_definitions" {
       policyID = module.policy_definitions.azure_appservice_latest_http_id
     },
     {
+      policyID = module.policy_definitions.azure_function_latest_http_id
+    },
+    {
       policyID = module.policy_definitions.azure_appservice_https_redirect_id
     },
     {
+      policyID = module.policy_definitions.azure_function_https_redirect_id
+    },
+    {
       policyID = module.policy_definitions.azure_appservice_ftp_disable_id
+    },
+    {
+      policyID = module.policy_definitions.azure_function_ftp_disable_id
+    },
+    {
+      policyID = module.policy_definitions.azure_appservice_tls_latest_id
+    },
+    {
+      policyID = module.policy_definitions.azure_function_tls_latest_id
     },
     {
       policyID = module.policy_definitions.azure_storage_https_id
